@@ -40,7 +40,7 @@ public class BaseTransaction implements TransactionInterface {
         System.out.println("Date: " + date.getTime());
         System.out.println("Amount: $" + amount);
     }
-    public void apply(BankAccount ba) {
+    public void apply(BankAccount ba) throws InsufficientFundsException {
         System.out.println("Applying base transaction logic...");
         // Default behavior for transactions.
         ba.deposit(amount); // Example: Default action as a deposit.

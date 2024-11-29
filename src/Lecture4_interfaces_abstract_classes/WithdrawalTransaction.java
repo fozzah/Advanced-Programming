@@ -11,13 +11,30 @@ public class WithdrawalTransaction extends BaseTransaction {
         super(amount, date);
     }
 
+    // Updated WithdrawalTransaction
     @Override
-    public void apply(BankAccount ba) {
-        if (ba.getBalance() >= getAmount()) {
-            ba.withdraw(getAmount());
-            System.out.println("Withdrawal of $" + getAmount() + " applied.");
-        } else {
-            System.out.println("Insufficient funds for withdrawal.");
+    public void apply(BankAccount ba) throws InsufficientFundsException {
+        if (ba.getBalance() < getAmount()) {
+            throw new InsufficientFundsException("Not enough funds for withdrawal.");
+        }
+        ba.withdraw(getAmount());
+        System.out.println("Withdrawal of $" + getAmount() + " applied.");
+    }
+
+    // Overloaded apply() with exception handling
+    public void apply(BankAccount ba, boolean allowPartial) {
+        try {
+            if (ba.getBalance() >= getAmount()) {
+                ba.withdraw(getAmount());
+            } else if (allowPartial && ba.getBalance() > 0) {
+                double partial = ba.getBalance();
+                ba.withdraw(partial);
+                System.out.println("Partial withdrawal of $" + partial + " applied.");
+            } else {
+                throw new InsufficientFundsException("Not enough funds for withdrawal.");
+            }
+        } catch (InsufficientFundsException e) {
+            System.err.println(e.getMessage());
         }
     }
     /*
