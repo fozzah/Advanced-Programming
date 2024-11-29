@@ -7,8 +7,8 @@ import java.util.Calendar;
 public class WithdrawalTransaction extends BaseTransaction {
     private boolean reversed = false;
 
-    public WithdrawalTransaction(double amount, Calendar date, String transactionID) {
-        super(amount, date, transactionID);
+    public WithdrawalTransaction(double amount, Calendar date) {
+        super(amount, date);
     }
 
     @Override
