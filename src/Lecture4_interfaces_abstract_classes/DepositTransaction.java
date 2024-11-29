@@ -4,8 +4,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
 
-public class DepositTrasaction extends BaseTransaction {
-    public DepositTrasaction(int amount, @NotNull Calendar date){
+public class DepositTransaction extends BaseTransaction {
+    public DepositTransaction(int amount, @NotNull Calendar date){
         super(amount, date);
     }
     private boolean checkDepositAmount(int amt){
@@ -19,7 +19,7 @@ public class DepositTrasaction extends BaseTransaction {
 
     // Method to print a transaction receipt or details
     public void printTransactionDetails(){
-        System.out.println("Deposit Trasaction: "+this.toString());
+        System.out.println("Deposit Transaction: "+this.toString());
     }
 
     public void apply(BankAccount ba){
