@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Calendar;
 
 public class DepositTransaction extends BaseTransaction {
-    public DepositTransaction(int amount, @NotNull Calendar date){
+    public DepositTransaction(double amount, @NotNull Calendar date){
         super(amount, date);
     }
     private boolean checkDepositAmount(int amt){

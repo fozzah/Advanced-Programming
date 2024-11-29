@@ -1,4 +1,5 @@
 import Lecture1_adt.*; // Import all classes from Lecture1_adt package to be used in this client code
+import Lecture4_interfaces_abstract_classes.*;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -27,7 +28,7 @@ public class Main {
 
     /** @return a transaction of same amount as t, one month later
      * This is a PRODUCER of the class Lecture1_adt.Transaction2
-     * This code will help demostrate the Design exposures still present in transaction2 class
+     * This code will help demonstrate the Design exposures still present in transaction2 class
      * */
 
     public static Transaction2 makeNextPayment(Transaction2 t) {
@@ -64,7 +65,7 @@ public class Main {
 
 
     /** @return a list of 12 monthly payments of identical amounts
-     * This code will help demostrate the Design exposures still present in transaction3 class
+     * This code will help demonstrate the Design exposures still present in transaction3 class
      * */
     public static List<Transaction3> makeYearOfPayments (int amount) throws NullPointerException {
 
@@ -144,13 +145,25 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
-        // This is the client code
-        // Uncomment the following lines to test the class which you would like to test
+    public static void main(String[] args) throws InsufficientFundsException {
+        Calendar date = Calendar.getInstance();
 
-        // testTransaction1()
-        // testTransaction2()
-        // testTransaction3()
-        // testTransaction4()
+        // Create bank account
+        BankAccount account = new BankAccount(1000.0);
+
+        // Create transactions
+        DepositTransaction deposit = new DepositTransaction(500.0, date);
+        WithdrawalTransaction withdrawal = new WithdrawalTransaction(300.0, date);
+
+        // Test Deposit
+        deposit.apply(account);
+        deposit.printTransactionDetails();
+
+        // Test Withdrawal
+        withdrawal.apply(account);
+        withdrawal.printTransactionDetails();
+
+        // Test reversal
+        withdrawal.reverse(account);
     }
 }
