@@ -144,7 +144,9 @@ public class Main {
         // Please Take a look at all the 12 transaction now and compare with the outputs of the Transaction3 class
     }
 
-
+    /*
+       Testing each transaction class by creating objects and calling apply()
+        */
     public static void main(String[] args) throws InsufficientFundsException {
         Calendar date = Calendar.getInstance();
 
